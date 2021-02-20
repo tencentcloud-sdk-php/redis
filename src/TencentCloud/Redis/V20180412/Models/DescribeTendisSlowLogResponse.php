@@ -18,26 +18,26 @@ namespace TencentCloud\Redis\V20180412\Models;
 use TencentCloud\Common\AbstractModel;
 
 /**
- * CreateInstances返回参数结构体
+ * DescribeTendisSlowLog返回参数结构体
  *
- * @method string getDealId() 获取交易的ID
- * @method void setDealId(string $DealId) 设置交易的ID
- * @method array getInstanceIds() 获取实例ID
- * @method void setInstanceIds(array $InstanceIds) 设置实例ID
+ * @method integer getTotalCount() 获取慢查询总数
+ * @method void setTotalCount(integer $TotalCount) 设置慢查询总数
+ * @method array getTendisSlowLogDetail() 获取慢查询详情
+ * @method void setTendisSlowLogDetail(array $TendisSlowLogDetail) 设置慢查询详情
  * @method string getRequestId() 获取唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  * @method void setRequestId(string $RequestId) 设置唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  */
-class CreateInstancesResponse extends AbstractModel
+class DescribeTendisSlowLogResponse extends AbstractModel
 {
     /**
-     * @var string 交易的ID
+     * @var integer 慢查询总数
      */
-    public $DealId;
+    public $TotalCount;
 
     /**
-     * @var array 实例ID
+     * @var array 慢查询详情
      */
-    public $InstanceIds;
+    public $TendisSlowLogDetail;
 
     /**
      * @var string 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -45,8 +45,8 @@ class CreateInstancesResponse extends AbstractModel
     public $RequestId;
 
     /**
-     * @param string $DealId 交易的ID
-     * @param array $InstanceIds 实例ID
+     * @param integer $TotalCount 慢查询总数
+     * @param array $TendisSlowLogDetail 慢查询详情
      * @param string $RequestId 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
     function __construct()
@@ -62,12 +62,17 @@ class CreateInstancesResponse extends AbstractModel
         if ($param === null) {
             return;
         }
-        if (array_key_exists("DealId",$param) and $param["DealId"] !== null) {
-            $this->DealId = $param["DealId"];
+        if (array_key_exists("TotalCount",$param) and $param["TotalCount"] !== null) {
+            $this->TotalCount = $param["TotalCount"];
         }
 
-        if (array_key_exists("InstanceIds",$param) and $param["InstanceIds"] !== null) {
-            $this->InstanceIds = $param["InstanceIds"];
+        if (array_key_exists("TendisSlowLogDetail",$param) and $param["TendisSlowLogDetail"] !== null) {
+            $this->TendisSlowLogDetail = [];
+            foreach ($param["TendisSlowLogDetail"] as $key => $value){
+                $obj = new TendisSlowLogDetail();
+                $obj->deserialize($value);
+                array_push($this->TendisSlowLogDetail, $obj);
+            }
         }
 
         if (array_key_exists("RequestId",$param) and $param["RequestId"] !== null) {

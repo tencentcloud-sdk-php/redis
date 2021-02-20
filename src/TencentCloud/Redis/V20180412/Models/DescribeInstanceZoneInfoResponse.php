@@ -18,26 +18,26 @@ namespace TencentCloud\Redis\V20180412\Models;
 use TencentCloud\Common\AbstractModel;
 
 /**
- * CreateInstances返回参数结构体
+ * DescribeInstanceZoneInfo返回参数结构体
  *
- * @method string getDealId() 获取交易的ID
- * @method void setDealId(string $DealId) 设置交易的ID
- * @method array getInstanceIds() 获取实例ID
- * @method void setInstanceIds(array $InstanceIds) 设置实例ID
+ * @method integer getTotalCount() 获取实例节点组的个数
+ * @method void setTotalCount(integer $TotalCount) 设置实例节点组的个数
+ * @method array getReplicaGroups() 获取实例节点组列表
+ * @method void setReplicaGroups(array $ReplicaGroups) 设置实例节点组列表
  * @method string getRequestId() 获取唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  * @method void setRequestId(string $RequestId) 设置唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
  */
-class CreateInstancesResponse extends AbstractModel
+class DescribeInstanceZoneInfoResponse extends AbstractModel
 {
     /**
-     * @var string 交易的ID
+     * @var integer 实例节点组的个数
      */
-    public $DealId;
+    public $TotalCount;
 
     /**
-     * @var array 实例ID
+     * @var array 实例节点组列表
      */
-    public $InstanceIds;
+    public $ReplicaGroups;
 
     /**
      * @var string 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -45,8 +45,8 @@ class CreateInstancesResponse extends AbstractModel
     public $RequestId;
 
     /**
-     * @param string $DealId 交易的ID
-     * @param array $InstanceIds 实例ID
+     * @param integer $TotalCount 实例节点组的个数
+     * @param array $ReplicaGroups 实例节点组列表
      * @param string $RequestId 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
      */
     function __construct()
@@ -62,12 +62,17 @@ class CreateInstancesResponse extends AbstractModel
         if ($param === null) {
             return;
         }
-        if (array_key_exists("DealId",$param) and $param["DealId"] !== null) {
-            $this->DealId = $param["DealId"];
+        if (array_key_exists("TotalCount",$param) and $param["TotalCount"] !== null) {
+            $this->TotalCount = $param["TotalCount"];
         }
 
-        if (array_key_exists("InstanceIds",$param) and $param["InstanceIds"] !== null) {
-            $this->InstanceIds = $param["InstanceIds"];
+        if (array_key_exists("ReplicaGroups",$param) and $param["ReplicaGroups"] !== null) {
+            $this->ReplicaGroups = [];
+            foreach ($param["ReplicaGroups"] as $key => $value){
+                $obj = new ReplicaGroup();
+                $obj->deserialize($value);
+                array_push($this->ReplicaGroups, $obj);
+            }
         }
 
         if (array_key_exists("RequestId",$param) and $param["RequestId"] !== null) {
