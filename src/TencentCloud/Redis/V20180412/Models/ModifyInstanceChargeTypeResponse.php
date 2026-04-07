@@ -18,34 +18,19 @@ namespace TencentCloud\Redis\V20180412\Models;
 use TencentCloud\Common\AbstractModel;
 
 /**
- * CreateInstances返回参数结构体
+ * ModifyInstanceChargeType返回参数结构体
  *
- * @method string getDealId() 获取<p>交易的ID。</p>
- * @method void setDealId(string $DealId) 设置<p>交易的ID。</p>
- * @method array getInstanceIds() 获取<p>实例ID。</p>
- * @method void setInstanceIds(array $InstanceIds) 设置<p>实例ID。</p>
- * @method string getDealName() 获取<p>订单号。</p>
- * @method void setDealName(string $DealName) 设置<p>订单号。</p>
+ * @method array getFailedInstanceIds() 获取<p>修改失败的实例信息汇总</p>
+ * @method void setFailedInstanceIds(array $FailedInstanceIds) 设置<p>修改失败的实例信息汇总</p>
  * @method string getRequestId() 获取唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
  * @method void setRequestId(string $RequestId) 设置唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
  */
-class CreateInstancesResponse extends AbstractModel
+class ModifyInstanceChargeTypeResponse extends AbstractModel
 {
     /**
-     * @var string <p>交易的ID。</p>
-     * @deprecated
+     * @var array <p>修改失败的实例信息汇总</p>
      */
-    public $DealId;
-
-    /**
-     * @var array <p>实例ID。</p>
-     */
-    public $InstanceIds;
-
-    /**
-     * @var string <p>订单号。</p>
-     */
-    public $DealName;
+    public $FailedInstanceIds;
 
     /**
      * @var string 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -53,9 +38,7 @@ class CreateInstancesResponse extends AbstractModel
     public $RequestId;
 
     /**
-     * @param string $DealId <p>交易的ID。</p>
-     * @param array $InstanceIds <p>实例ID。</p>
-     * @param string $DealName <p>订单号。</p>
+     * @param array $FailedInstanceIds <p>修改失败的实例信息汇总</p>
      * @param string $RequestId 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
      */
     function __construct()
@@ -71,16 +54,13 @@ class CreateInstancesResponse extends AbstractModel
         if ($param === null) {
             return;
         }
-        if (array_key_exists("DealId",$param) and $param["DealId"] !== null) {
-            $this->DealId = $param["DealId"];
-        }
-
-        if (array_key_exists("InstanceIds",$param) and $param["InstanceIds"] !== null) {
-            $this->InstanceIds = $param["InstanceIds"];
-        }
-
-        if (array_key_exists("DealName",$param) and $param["DealName"] !== null) {
-            $this->DealName = $param["DealName"];
+        if (array_key_exists("FailedInstanceIds",$param) and $param["FailedInstanceIds"] !== null) {
+            $this->FailedInstanceIds = [];
+            foreach ($param["FailedInstanceIds"] as $key => $value){
+                $obj = new FailedInstance();
+                $obj->deserialize($value);
+                array_push($this->FailedInstanceIds, $obj);
+            }
         }
 
         if (array_key_exists("RequestId",$param) and $param["RequestId"] !== null) {
